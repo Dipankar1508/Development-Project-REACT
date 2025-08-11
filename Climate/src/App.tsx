@@ -22,6 +22,7 @@ function App() {
           </Layout>
         </ThemeProvider>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
 
   )
