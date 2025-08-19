@@ -1,38 +1,40 @@
-export interface Coordinates{
+export interface Coordinates {
     lat: number;
     lon: number;
 }
 
-export interface WeatherCondition{
-    id:number;
+export interface WeatherCondition {
+    id: number;
     main: string;
-    description: string,
-    icon:string;
+    description: string;
+    icon: string;
 }
 
-export interface WeatherData{
+export interface MainWeather {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+}
+
+export interface WeatherData {
     coord: Coordinates;
     weather: WeatherCondition[];
     base: string;
-    main: {
-        temp: number;
-        feels_like: number;
-        temp_min: number;
-        temp_max: number;
-        pressure: number;
-        humidity: number;
-        };
+    main: MainWeather;
     visibility: number;
     wind: {
         speed: number;
         deg: number;
     };
-    clouds:{
-        all:number;
-    }
+    clouds: {
+        all: number;
+    };
     dt: number;
     sys: {
-        type: number;
+        type?: number;
         id: number;
         country: string;
         sunrise: number;
@@ -40,33 +42,30 @@ export interface WeatherData{
     };
     timezone: number;
     id: number;
-    name: string
+    name: string;
 }
 
-export interface ForeCastData{
+export interface ForeCastData {
     list: Array<{
-        dt:number,
-        main:WeatherData['main'],
-        weather: WeatherData['weather'],
-        wind: WeatherData['wind'],
-        dt_text:string
-    }>
-
-    city:{
-        name:String;
-        country:String;
-        sunrise:number;
-        sunset:number;
-
-    }
+        dt: number;
+        main: MainWeather;
+        weather: WeatherCondition[];
+        wind: WeatherData["wind"];
+        dt_txt: string; 
+    }>;
+    city: {
+        name: string;
+        country: string;
+        sunrise: number;
+        sunset: number;
+    };
 }
 
-export interface GeocodingResponse{
-    name:String;
-    local_name?:Record<string,string >;
-    lat :number;
-    lon:number;
-    country:String;
-    state?:String;
-    
+export interface GeocodingResponse {
+    name: string;
+    local_names?: Record<string, string>;
+    lat: number;
+    lon: number;
+    country: string;
+    state?: string;
 }
