@@ -49,7 +49,7 @@ class WeatherAPI {
         const url = this.createUrl(`${API_CONFIG.GEO}/reverse`, {
             lat: lat.toString(),
             lon: lon.toString(),
-            limit: 3,
+            limit: 1,
         });
         return this.fetchData<GeocodingResponse[]>(url);
     }

@@ -1,3 +1,4 @@
+import CurrentWeather from "@/components/CurrentWeather";
 import Weatherskeleton from "@/components/loading-skeleton";
 import { AlertDescription, AlertTitle, Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -85,22 +86,41 @@ const WeatherDashborad = () => {
         );
     }
 
-    return (
-        <div className="space-y-4">
-            {/* Favorte class */}
-            <div className="flex items-center justify-between ">
-                <h1 className="text-4xl font-bold tracking-tight">My Location</h1>
-                <Button
-                    variant={"outline"}
-                    size={"icon"}
-                    onClick={handleRefresh}
-                    disabled={weatherQuery.isFetching || forecastQuery.isFetching}
-                >
-                    <RefreshCcw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`} />
-                </Button>
+    if (!weatherQuery.data || !forecastQuery.data) {
+        return <Weatherskeleton />
+    }
 
+    return (
+        <>
+            <div className="space-y-4">
+                {/* Favorte class */}
+                <div className="flex items-center justify-between ">
+                    <h1 className="text-4xl font-bold tracking-tight">My Location</h1>
+                    <Button
+                        variant={"outline"}
+                        size={"icon"}
+                        onClick={handleRefresh}
+                        disabled={weatherQuery.isFetching || forecastQuery.isFetching}
+                    >
+                        <RefreshCcw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`} />
+                    </Button>
+
+                </div>
             </div>
-        </div>
+
+            <div>
+                <div>
+                    {/* current weather */}
+                    <CurrentWeather data={weatherQuery.data} locationName={locationName} />
+                    {/* hourly weather */}
+                </div>
+
+                <div>
+                    {/* Details */}
+                    {/* Forecast */}
+                </div>
+            </div>
+        </>
     );
 };
 
