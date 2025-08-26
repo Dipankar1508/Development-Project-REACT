@@ -16,7 +16,7 @@ interface HourlyForecastProps {
 
 const HourTemperature = ({ data }: HourlyForecastProps) => {
   const chartData = data.list.slice(0, 8).map((item) => ({
-    time: format(new Date(item.dt * 100), "ha"),
+    time: format(new Date(item.dt * 1000), "ha"),
     temp: Math.round(item.main.temp),
     feels_like: Math.round(item.main.feels_like),
   }));
@@ -43,7 +43,7 @@ const HourTemperature = ({ data }: HourlyForecastProps) => {
                   fontSize={12}
                   tickLine={false}
                   axisLine={false}
-                  tickFormatter={(val) => `${val}°C`}
+                  tickFormatter={(value) => `${value}°C`}
                 />
                 <Tooltip
                   content={({ active, payload }) => {
