@@ -4,6 +4,7 @@ import Weatherskeleton from "@/components/loading-skeleton";
 import { AlertDescription, AlertTitle, Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { WeatherDetails } from "@/components/weather-details";
+import WeatherForeCast from "@/components/WeatherForecast";
 import { useGeolocation } from "@/hooks/use-geolocation";
 import {
   useForecastQuery,
@@ -31,6 +32,9 @@ const WeatherDashborad = () => {
 
     if (coordinates) {
       // reload weather data
+      weatherQuery.refetch();
+      forecastQuery.refetch();
+      locationQuery.refetch();
     }
   };
   if (locationLoading) {
@@ -123,10 +127,11 @@ const WeatherDashborad = () => {
           <HourTemperature data={forecastQuery.data} />
         </div>
 
-        <div>
+        <div className="grid gap-6 md:grid-cols-2 items-start">
           {/* Details */}
           <WeatherDetails data={weatherQuery.data} />
           {/* Forecast */}
+          <WeatherForeCast data={forecastQuery.data} />
         </div>
       </div>
     </>

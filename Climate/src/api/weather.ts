@@ -8,7 +8,7 @@ import type {
 } from "./types";
 class WeatherAPI {
 
-    private createUrl(endpoint: string, params: Record<string, string | number>,includeKey = true) {
+    private createUrl(endpoint: string, params: Record<string, string | number>) {
         const searchParams = new URLSearchParams({
             appid: API_CONFIG.API_KEY,
             ...params
@@ -20,8 +20,9 @@ class WeatherAPI {
         const response = await fetch(url);
 
         if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Error ${response.status}: ${errorText}`);
+            // const errorText = await response.text();
+            // throw new Error(`Error ${response.status}: ${errorText}`);
+            throw new Error(`Error ${response.statusText}`);
         }
         return response.json();
     };
