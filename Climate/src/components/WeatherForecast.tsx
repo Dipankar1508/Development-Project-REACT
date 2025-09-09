@@ -43,7 +43,7 @@ const WeatherForeCast = ({ data }: WeatherForeCastProps) => {
 
   const nextFiveDays = Object.values(DailyForecast).slice(1, 6);
 
-  const formatTemp = (temp: number) => `${Math.round(temp)}&deg`;
+  const formatTemp = (temp: number) => `${Math.round(temp)}°C`;
   return (
     <>
       <Card>
@@ -51,10 +51,10 @@ const WeatherForeCast = ({ data }: WeatherForeCastProps) => {
           <CardTitle>5-Day Forecast</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4">
+          <div className="flex flex-col gap-4">
             {nextFiveDays.map((day) => (
               <div
-                className="grid grid-cols-3 items-center gap-4 rounded-lg border p-4"
+                className="flex flex-col items-center sm:flex-row  sm:justify-between gap-4 p-4 border rounded-lg"
                 key={day.date}
               >
                 <div>
@@ -65,7 +65,7 @@ const WeatherForeCast = ({ data }: WeatherForeCastProps) => {
                     {day.weather.description}
                   </p>
                 </div>
-                <div className="flex justify-center gap-4">
+                <div className="flex lg:justify-center gap-4 ">
                   <span className="flex items-center text-blue-500">
                     <ArrowDown className="h-4 w-4 mr-1" />
                     {formatTemp(day.temp_min)}
@@ -75,7 +75,7 @@ const WeatherForeCast = ({ data }: WeatherForeCastProps) => {
                     {formatTemp(day.temp_max)}
                   </span>
                 </div>
-                <div className="flex justify-end gap-4">
+                <div className="flex lg:justify-end gap-4 ">
                   <span className="flex items-center gap-1">
                     <Droplet className="h-4 w-4 text-blue-500" />
                     <span className="text-sm">{day.humidity}%</span>

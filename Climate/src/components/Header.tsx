@@ -14,12 +14,13 @@ const Header = () => {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
           <Link to={"/"}>
             <img
-              src={theme === "dark" ? "/darklogo.png" : "/lightlogo.png"}
+              // src={theme === "dark" ? "/darklogo.png" : "/lightlogo.png"}
+              src="/logo.png"
               alt="Climate Logo"
-              className="h-20"
+              className="h-16"
             />
           </Link>
-         
+
           <div className="flex gap-4">
             <CitySearch />
             <div

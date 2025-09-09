@@ -119,15 +119,19 @@ const WeatherDashborad = () => {
       <div className="grid gap-6 my-4">
         <div className="flex flex-col lg:flex-row gap-4">
           {/* current weather */}
-          <CurrentWeather
-            data={weatherQuery.data}
-            locationName={locationName}
-          />
+          <div className="flex-1">
+            <CurrentWeather
+              data={weatherQuery.data}
+              locationName={locationName}
+            />
+          </div>
           {/* hourly weather */}
-          <HourTemperature data={forecastQuery.data} />
+          <div className="flex-1">
+            <HourTemperature data={forecastQuery.data} />
+          </div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 items-start">
+        <div className="grid gap-6 items-start">
           {/* Details */}
           <WeatherDetails data={weatherQuery.data} />
           {/* Forecast */}
