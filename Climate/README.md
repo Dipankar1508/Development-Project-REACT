@@ -1,3 +1,1 @@
-```js
-conslole.log("Hello World");
-```
+## Output
